@@ -50,7 +50,6 @@ function Get-VfpPorts()
 {
     Param(
         [ValidateNotNullorEmpty()]
-        [string]$SwitchName = $(throw "Please provide a switch name."),
         [parameter(Mandatory=$false)][string]$MacAddress
         )
     $vfpPorts = @()
@@ -323,7 +322,7 @@ function Get-VfpRules_HnsEndpointId()
     )
 
     $ep = (Get-HnsEndpoint $EndpointId)
-    $port = Get-VfpPorts -SwitchName $ep.VirtualNetworkName -MacAddress $ep.MacAddress
+    $port = Get-VfpPorts -MacAddress $ep.MacAddress
     
     throw "TBD"
 

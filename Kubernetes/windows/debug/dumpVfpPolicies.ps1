@@ -1,5 +1,4 @@
 param(
-   [string]$switchName = $(throw "please specify a switch name"),
    [string]$outfile = "vfprules.txt"
   )
 
@@ -22,7 +21,7 @@ ipmo $helper
 DownloadFile -Url "https://raw.githubusercontent.com/$GithubSDNRepository/master/Kubernetes/windows/debug/VFP.psm1" -Destination $BaseDir\VFP.psm1
 ipmo $BaseDir\VFP.psm1
 
-$ports = Get-VfpPorts -SwitchName $switchName
+$ports = Get-VfpPorts
 
 # Dump the port info
 $ports | select 'Port name', 'Mac Address', 'PortId' | Out-File $outfile -Encoding ascii -Append
